@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -28,10 +29,11 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-}
-
-private fun downloadUserData() {
-    for (i in 1..200000) {
-        Log.i("MyTag", "Downloading user $i in ${Thread.currentThread().name}")
+    private suspend fun downloadUserData() {
+        for (i in 1..200000) {
+            Log.i("MyTag", "Downloading user $i in ${Thread.currentThread().name}")
+            delay(100)
+        }
     }
 }
+
